@@ -5,6 +5,7 @@ import { color, fonts, spring as springs } from '../theme';
 
 // Captions sit in a reserved band at the bottom (y 1690-1880). Nothing else is placed there,
 // and signers are framed above it, so captions never cover a face or hands.
+// Subtitles highlight words as the voice speaks, guided by timing.
 export const Captions: React.FC = () => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
@@ -13,24 +14,47 @@ export const Captions: React.FC = () => {
   const local = frame - sec(cue.from);
   const out = sec(cue.to) - frame;
   const opacity = Math.min(interpolate(local, [0, 5], [0, 1], { extrapolateRight: 'clamp' }), interpolate(out, [0, 4], [0, 1], { extrapolateRight: 'clamp' }));
+
+  const duration = cue.to - cue.from;
+  const progress = Math.min(1, Math.max(0, (t - cue.from) / duration));
+  const words = cue.text.split(' ');
+  const activeWordIdx = Math.floor(progress * (words.length + 1));
+
   return (
     <div style={{ position: 'absolute', left: 60, right: 60, bottom: 50, height: 180, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div
         style={{
           opacity,
-          background: 'rgba(32, 55, 49, 0.92)',
+          background: 'rgba(32, 55, 49, 0.94)',
           color: '#fff',
           fontFamily: fonts.body,
-          fontWeight: 600,
+          fontWeight: 650,
           fontSize: 46,
-          lineHeight: 1.3,
+          lineHeight: 1.35,
           textAlign: 'center',
-          padding: '20px 34px',
-          borderRadius: 22,
+          padding: '22px 36px',
+          borderRadius: 24,
           maxWidth: 960,
+          boxShadow: '0 12px 36px rgba(0,0,0,0.3)',
+          border: '1px solid rgba(137, 201, 174, 0.2)',
         }}
       >
-        {cue.text}
+        {words.map((w, i) => {
+          const isSpoken = i <= activeWordIdx;
+          const isCurrent = i === activeWordIdx;
+          return (
+            <span
+              key={i}
+              style={{
+                color: isCurrent ? '#efbe64' : isSpoken ? '#ffffff' : '#a2b5a5',
+                display: 'inline-block',
+                marginRight: '0.28em',
+              }}
+            >
+              {w}
+            </span>
+          );
+        })}
       </div>
     </div>
   );

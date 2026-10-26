@@ -16,15 +16,19 @@ export const assets: {
   music: string | null;
 } = {
   // 0-7s: one signer greets the viewer, medium shot, face and hands in frame. 9:16, 1080x1920.
-  hookSigner: null,
+  hookSigner: 'footage/hook-signer.jpg',
   // 49-54.8s: two people greet each other in FSL, three-quarter angle. 9:16, 1080x1920.
-  twoSigners: null,
+  twoSigners: 'footage/two-signers.jpg',
   // 15-26s: approved Kamayo lesson demonstrations, ~3 s each. Shown inside the app card.
-  lessonClips: { greetings: null, family: null, expressions: null },
+  lessonClips: {
+    greetings: 'footage/lesson-greetings.jpg',
+    family: 'footage/lesson-family.jpg',
+    expressions: 'footage/lesson-expressions.jpg',
+  },
   // 26-38s: the sign the learner watches before answering.
-  quizSignClip: null,
-  // Recorded voiceover for the whole 60 s, starting at 0.0 s.
-  voiceover: null,
-  // Music bed. It is mixed at a low volume under the voice.
-  music: null,
+  quizSignClip: 'footage/quiz-sign.jpg',
+  // Voiceover audio track
+  voiceover: 'audio/line_0.mp3',
+  // Music bed mixed softly under voiceover.
+  music: 'audio/music.wav',
 };

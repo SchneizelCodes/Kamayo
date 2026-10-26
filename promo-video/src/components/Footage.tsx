@@ -1,5 +1,5 @@
 import React from 'react';
-import { AbsoluteFill, OffthreadVideo, staticFile } from 'remotion';
+import { AbsoluteFill, Img, interpolate, OffthreadVideo, staticFile, useCurrentFrame } from 'remotion';
 import { Video } from 'lucide-react';
 import { color, fonts } from '../theme';
 
@@ -12,10 +12,27 @@ export const Footage: React.FC<{
   people?: 1 | 2;
   muted?: boolean;
 }> = ({ src, title, notes, people = 1 }) => {
+  const frame = useCurrentFrame();
   if (src) {
+    const isVideo = src.endsWith('.mp4') || src.endsWith('.webm');
+    // Subtle cinematic slow drift for still photo footage so it breathes dynamically
+    const zoom = interpolate(frame % 240, [0, 240], [1.0, 1.04], { extrapolateRight: 'clamp' });
     return (
-      <AbsoluteFill>
-        <OffthreadVideo src={staticFile(src)} muted style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      <AbsoluteFill style={{ overflow: 'hidden', background: '#203731' }}>
+        {isVideo ? (
+          <OffthreadVideo src={staticFile(src)} muted style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        ) : (
+          <Img
+            src={staticFile(src)}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transform: `scale(${zoom})`,
+              transformOrigin: 'center 40%',
+            }}
+          />
+        )}
       </AbsoluteFill>
     );
   }

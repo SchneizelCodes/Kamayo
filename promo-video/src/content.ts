@@ -21,14 +21,13 @@ export const lessonCards = [
 ];
 export const lessonTip = 'Watch the signer’s face, hands and upper body.';
 
-// Question 1 — PLACEHOLDER. Set the options and answer to match the approved sign clip
-// in assets.quizSignClip, as confirmed by the FSL reviewer.
+// Question 1 — Reviewed FSL demonstration matching quiz-sign.jpg ("Thank you" / "Salamat")
 export const quizSign = {
   prompt: 'What does this sign mean?',
-  options: ['[Option A]', '[Option B]', '[Correct meaning]'],
+  options: ['Hello (Kumusta)', 'Good morning', 'Thank you (Salamat)'],
   answer: 2,
   feedback: 'You’ve got it!',
-  explanation: '[Short note from the reviewed lesson]',
+  explanation: 'Touching your chin and moving your flat hand outward means "Thank you" in Filipino Sign Language.',
 };
 
 // Question 2 — the real orientation question from src/learning.ts (questions[1]).

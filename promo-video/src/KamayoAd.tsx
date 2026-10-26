@@ -3,10 +3,10 @@
 // a quiz card, a level on the learning path, then the two-signer footage, and finally folds
 // into the Kamayo logo. Only one hard cut is used, at 49 s, from the app back to real life.
 import React from 'react';
-import { AbsoluteFill, Audio, interpolate, interpolateColors, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Audio, interpolate, interpolateColors, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { ArrowRight, Hand, Check } from 'lucide-react';
 import { color, fonts, spring as springs } from './theme';
-import { beats, sec } from './timing';
+import { beats, captions, sec } from './timing';
 import { assets } from './assets';
 import { endCard } from './content';
 import { Footage } from './components/Footage';
@@ -260,8 +260,13 @@ export const KamayoAd: React.FC = () => {
       <TravellingFrame />
       <Overlays />
       <Captions />
-      {assets.voiceover && <Audio src={staticFile(assets.voiceover)} />}
-      {assets.music && <Audio src={staticFile(assets.music)} volume={0.18} />}
+      {/* Synchronized EmmaNeural voiceover matching each subtitle cue */}
+      {captions.map((c, i) => (
+        <Sequence key={i} from={sec(c.from)} durationInFrames={sec(c.to - c.from) + 15}>
+          <Audio src={staticFile(`audio/line_${i}.mp3`)} volume={1.0} />
+        </Sequence>
+      ))}
+      {assets.music && <Audio src={staticFile(assets.music)} volume={0.15} />}
     </AbsoluteFill>
   );
 };

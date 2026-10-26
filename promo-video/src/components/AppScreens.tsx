@@ -2,7 +2,7 @@
 // .hero-card, .unit-banner, .level-node, .lesson-meta, .progress-track, .answer-options,
 // .answer-feedback, .lesson-finish, .earned and .bottom-nav.
 import React from 'react';
-import { interpolate, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { Img, interpolate, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { ArrowRight, BookOpen, Check, Heart, Home, Leaf, LockKeyhole, Map, Play, RotateCcw, Settings, Sparkles, Star, Trophy, Video, Zap } from 'lucide-react';
 import { color, fonts, spring as springs } from '../theme';
 import { appear } from './Overlay';
@@ -174,10 +174,25 @@ const ClipArea: React.FC<{ src: string | null; label: string; height: number; re
   // Playhead: plays from startAt, rewinds to 0 when Replay is tapped.
   const playStart = replayAt !== undefined && t >= replayAt ? replayAt : startAt;
   const progress = Math.min(1, Math.max(0, (t - playStart) / 3.2));
+  const isVideo = src ? src.endsWith('.mp4') || src.endsWith('.webm') : false;
+  const zoom = interpolate(frame % 210, [0, 210], [1.0, 1.05], { extrapolateRight: 'clamp' });
   return (
     <div style={{ height, borderRadius: 28, overflow: 'hidden', position: 'relative', background: '#203731' }}>
       {src ? (
-        <OffthreadVideo src={staticFile(src)} muted style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        isVideo ? (
+          <OffthreadVideo src={staticFile(src)} muted style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        ) : (
+          <Img
+            src={staticFile(src)}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transform: `scale(${zoom})`,
+              transformOrigin: 'center 40%',
+            }}
+          />
+        )
       ) : (
         <div style={{ position: 'absolute', inset: 22, border: '3px dashed #89c9ae66', borderRadius: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 18, color: '#a7b7ab', textAlign: 'center', padding: 30 }}>
           <Video size={64} color="#89c9ae" />

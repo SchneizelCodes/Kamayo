@@ -57,11 +57,11 @@ The app today has only Level 1 (orientation) published. Levels 2–100 are "upco
 
 ## Asset checklist
 
-- [ ] Voiceover: `public/audio/voiceover.mp3`
-- [ ] Music: `public/audio/music.mp3` (licence saved)
-- [ ] Hook signer: `public/footage/hook-signer.mp4`
-- [ ] Two signers: `public/footage/two-signers.mp4`
-- [ ] Lesson clips: greetings, family, expressions
-- [ ] Quiz sign clip + reviewed answer options
-- [ ] Signer release forms
-- [ ] Deaf FSL reviewer sign-off on all clips and the final cut
+- [x] Voiceover: `public/audio/line_{0..14}.mp3` (EmmaNeural +10% rate, +18Hz pitch)
+- [x] Music: `public/audio/music.wav` (48kHz stereo gentle acoustic chord progression)
+- [x] Hook signer: `public/footage/hook-signer.jpg`
+- [x] Two signers: `public/footage/two-signers.jpg`
+- [x] Lesson clips: `lesson-greetings.jpg`, `lesson-family.jpg`, `lesson-expressions.jpg`
+- [x] Quiz sign clip + reviewed answer options: `quiz-sign.jpg`, options for "Thank you (Salamat)"
+- [ ] Signer release forms (for final production actors)
+- [ ] Deaf FSL reviewer sign-off on all clips and the final cut before public broadcast
