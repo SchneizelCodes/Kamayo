@@ -1,0 +1,26 @@
+{
+  "name": "kamayo-promo-video",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Kamayo 60-second vertical ad, built with Remotion in Kamayo's own design system.",
+  "type": "module",
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "still": "remotion still src/index.ts KamayoAd out/still.png --frame=300",
+    "render": "remotion render src/index.ts KamayoAd out/kamayo-ad.mp4",
+    "render:draft": "remotion render src/index.ts KamayoAd out/kamayo-ad-draft.mp4 --scale=0.5",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.538",
+    "@remotion/fonts": "^4.0.538",
+    "lucide-react": "0.468.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.538"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "typescript": "5.9.3"
+  }
+}
