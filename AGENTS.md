@@ -3,7 +3,7 @@
 Kamayo: An Interactive Filipino Sign Language Learning System.
 
 ## Shared memory (vault first)
-Vault: `C:/Users/joshu/Documents/GitHub/brains` (or `BRAIN_VAULT`). It is one brain for several systems. Follow its `_guide/Agent memory workflow.md`: read → verify → improve → reply on substantive turns. The folder table is in `_guide/Start here.md`.
+Vault: `C:/Users/joshu/Documents/GitHub/SchneizelCodes-Brains` (or `BRAIN_VAULT`). It is one brain for several systems. Follow its `_guide/Agent memory workflow.md`: read → verify → improve → reply on substantive turns. The folder table is in `_guide/Start here.md`.
 
 Read first:
 1. `kamayo-brains/Kamayo start here.md`: what Kamayo is and what has been decided.
@@ -20,7 +20,7 @@ Where notes go:
 - From a Tindero or shared note, mention a `kamayo-brains/` note by path, not with a wikilink.
 - Never add `kamayo-brains` to the vault's `scripts/push-vault.mjs` lists.
 
-Search the vault from HLPSHOP: `npx tsx scripts/search-brain-vault.ts "<topic>"`, or use plain text search on the vault folder.
+Search the vault from the Tindero repo: `npx tsx scripts/search-brain-vault.ts "<topic>"`, or use plain text search on the vault folder.
 
 ## Data rules
 Never store recordings or images of learners, learner names or scores, keys or passwords in the vault or the repo. Treat camera footage as personal data.
