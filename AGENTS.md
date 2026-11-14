@@ -3,7 +3,7 @@
 Kamayo: An Interactive Filipino Sign Language Learning System.
 
 ## Shared memory (vault first)
-Vault: `C:/Users/joshu/Documents/GitHub/SchneizelCodes-Brains` (or `BRAIN_VAULT`). It is one brain for several systems. Follow its `_guide/Agent memory workflow.md`: read → verify → improve → reply on substantive turns. The folder table is in `_guide/Start here.md`.
+Vault: `C:/Users/joshu/Documents/GitHub/Notes/SchneizelCodes-Brains` (or `BRAIN_VAULT`). It is one brain for several systems. Follow its `_guide/Agent memory workflow.md`: read → verify → improve → reply on substantive turns. The folder table is in `_guide/Start here.md`.
 
 Read first:
 1. `kamayo-brains/Kamayo start here.md`: what Kamayo is and what has been decided.

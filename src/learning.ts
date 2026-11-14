@@ -9,7 +9,12 @@ export function getLevelState(level: typeof levels[number], p: Progress) {
   if (p.completed.includes(level.id)) return 'completed';
   return level.prerequisites.every(id => p.completed.includes(id)) ? 'available' : 'locked';
 }
-export function reviewDate(step: number, today = new Date().toISOString().slice(0, 10)) {
+/** Today's date in Asia/Manila, the same day boundary the database uses (public.kamayo_today). */
+export function kamayoToday(now = new Date()): string {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Manila', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+}
+
+export function reviewDate(step: number, today = kamayoToday()) {
   const d = new Date(`${today}T12:00:00Z`); d.setUTCDate(d.getUTCDate() + [1, 3, 7, 14][Math.min(Math.max(step, 0), 3)]); return d.toISOString().slice(0, 10);
 }
 export function completeOrientation(p: Progress): Progress {
@@ -24,7 +29,7 @@ export function restoreProgress(raw: string | null): Progress {
   } catch { return { ...initialProgress }; }
 }
 export const questions = [
-  { title: 'A language of its own', text: 'Filipino Sign Language is a visual language used by the Filipino Deaf community. It has its own grammar and cultural context.', prompt: 'What is Filipino Sign Language?', options: ['A language with its own grammar', 'English expressed word for word', 'The same sign language everywhere'], answer: 0, explanation: 'FSL is a language in its own right. Learn its structures from fluent FSL signers rather than translating English word for word.' },
-  { title: 'Look at the whole picture', text: 'When watching an FSL demonstration, keep the signer’s face, hands, and upper body in view. Facial expressions and body movements can carry meaning.', prompt: 'What should a clear demonstration show?', options: ['Only the hands', 'The face, hands, and upper body', 'Only a written translation'], answer: 1, explanation: 'Watch the whole signer. Facial expressions and body movements are part of signed communication.' },
-  { title: 'Small steps, real connections', text: 'Replay demonstrations, take your time, and practice with educator-reviewed material. Finishing a course is a milestone; it does not automatically certify fluency.', prompt: 'What does completing Level 100 represent?', options: ['A professional interpreter qualification', 'Automatic fluency certification', 'Completion of Kamayo’s course'], answer: 2, explanation: 'Course completion is a meaningful milestone. Fluency requires broader communication experience and appropriate assessment.' },
+  { title: 'A language of its own', hint: 'Think about what makes something a full language rather than a code for another one.', text: 'Filipino Sign Language is a visual language used by the Filipino Deaf community. It has its own grammar and cultural context.', prompt: 'What is Filipino Sign Language?', options: ['A language with its own grammar', 'English expressed word for word', 'The same sign language everywhere'], answer: 0, explanation: 'FSL is a language in its own right. Learn its structures from fluent FSL signers rather than translating English word for word.' },
+  { title: 'Look at the whole picture', hint: 'Meaning can come from more than the hands.', text: 'When watching an FSL demonstration, keep the signer’s face, hands, and upper body in view. Facial expressions and body movements can carry meaning.', prompt: 'What should a clear demonstration show?', options: ['Only the hands', 'The face, hands, and upper body', 'Only a written translation'], answer: 1, explanation: 'Watch the whole signer. Facial expressions and body movements are part of signed communication.' },
+  { title: 'Small steps, real connections', hint: 'Finishing a course and being fluent are not the same thing.', text: 'Replay demonstrations, take your time, and practice with educator-reviewed material. Finishing a course is a milestone; it does not automatically certify fluency.', prompt: 'What does completing Level 100 represent?', options: ['A professional interpreter qualification', 'Automatic fluency certification', 'Completion of Kamayo’s course'], answer: 2, explanation: 'Course completion is a meaningful milestone. Fluency requires broader communication experience and appropriate assessment.' },
 ];
