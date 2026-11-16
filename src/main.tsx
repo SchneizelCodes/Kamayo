@@ -1,5 +1,6 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from 'react';
-import { createRoot } from 'react-dom/client';
 import { ArrowRight, ArrowLeft, BookOpen, Check, ChevronDown, ChevronRight, CircleHelp, Flame, Hand, Heart, Home, Leaf, LockKeyhole, Map, Menu, Play, RotateCcw, Search, Settings, ShieldCheck, Sparkles, Star, Target, Trophy, Users, Video, Volume2, VolumeX, X, Zap } from 'lucide-react';
 import { completeOrientation, getLevelState, initialProgress, levels, questions, restoreProgress, stages, units, type Progress } from './learning';
 import './styles.css';
@@ -189,4 +190,11 @@ function FamilyExplorer() {
   const groups = [['Grandparent', 'Grandparent'], ['Parent', 'Parent'], ['Sibling', 'You', 'Sibling']];
   return <section className="family-card"><div className="section-heading"><h2>A family, at a glance</h2><button className="text-button" onClick={() => setAsList(!asList)}>{asList ? 'Tree view' : 'List view'}</button></div><div className={asList ? 'family-list' : 'family-tree'}>{groups.map((group, g) => <div className="family-generation" key={g}>{group.map((r, i) => <button key={`${r}-${i}`} className={`relative ${relation === r ? 'selected' : ''}`} onClick={() => setRelation(r)}><span className="relative-icon"><Users size={25}/></span>{r}</button>)}</div>)}</div><div className="relation-detail"><strong>{relation}</strong><p>{relation === 'You' ? 'The starting point for exploring this sample family.' : `A ${relation.toLowerCase()} relationship in this sample family. FSL demonstrations will appear here after educator review.`}</p><span className="label">RELATIONSHIP REFERENCE · SIGN VIDEO UPCOMING</span></div></section>;
 }
-createRoot(document.getElementById('root')!).render(<React.StrictMode><AccountProvider><App/></AccountProvider></React.StrictMode>);
+export function KamayoRoot() {
+  return (
+    <AccountProvider>
+      <App />
+    </AccountProvider>
+  );
+}
+export default KamayoRoot;

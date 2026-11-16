@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from 'react';
 import { Captions, Pause, Play, RefreshCw, Repeat, ShieldAlert, Video } from 'lucide-react';
 

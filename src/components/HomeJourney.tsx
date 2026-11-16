@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight, Check, LockKeyhole, RotateCcw, Star } from 'lucide-react';
 import { CATALOGUE_TOPICS } from '../contentContract';

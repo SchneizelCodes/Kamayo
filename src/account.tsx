@@ -1,10 +1,12 @@
+"use client";
+
 import { createClient, type Session } from '@supabase/supabase-js';
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { initialProgress, type Progress } from './learning';
 
-const url = import.meta.env.VITE_SUPABASE_URL;
-const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL || (typeof import.meta !== 'undefined' && (import.meta as unknown as { env?: Record<string, string> }).env?.VITE_SUPABASE_URL) || '';
+const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || (typeof import.meta !== 'undefined' && (import.meta as unknown as { env?: Record<string, string> }).env?.VITE_SUPABASE_ANON_KEY) || '';
 export const backend = url && key ? createClient(url, key) : null;
 type Account = { session: Session | null; ready: boolean; error: string; refresh: () => Promise<Progress | null> };
 const Context = createContext<Account>({ session: null, ready: !backend, error: '', refresh: async () => null });

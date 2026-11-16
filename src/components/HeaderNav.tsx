@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from 'react';
 import { BookOpen, ChevronDown, Hand, Home, Map, RotateCcw, User, Users, type LucideIcon } from 'lucide-react';
 

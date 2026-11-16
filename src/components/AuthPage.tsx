@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo, useState } from 'react';
 import { ArrowRight, Eye, EyeOff, Hand, Loader2, Lock, Mail, User } from 'lucide-react';
 import { backend } from '../account';
